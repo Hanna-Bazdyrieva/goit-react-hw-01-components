@@ -1,105 +1,185 @@
-# React homework template
+Критерії приймання Використовуй цей шаблон React-проекту як стартову точку своєї
+програми.
 
-Este proyecto fue creado con la ayuda de
-[Create React App](https://github.com/facebook/create-react-app).
-[Consulte la documentación](https://facebook.github.io/create-react-app/docs/getting-started)
-para familiarizarse con las funciones opcionales y configurarlas.
+<!-- Створений репозиторій goit-react-hw-01-components. -->
 
-## Создание репозитория по шаблону
+Компоненти всіх завдань рендеряться на одній сторінці, всередині загального
+контейнера - кореневого компонента <App>. При здачі домашньої роботи є посилання
+на репозиторій з вихідним кодом проекту.
 
-Используй этот репозиторий организации GoIT как шаблон для создания репозитория
-своего проекта. Для этого нажми на кнопку `«Use this template»` и выбери опцию
-`«Create a new repository»`, как показано на изображении.
+<!-- У шапці репозиторія є посилання на живу сторінку на GitHub pages. -->
 
-![Creating repo from a template step 1](./assets/template-step-1.png)
+Під час відвідування робочої сторінки (GitHub pages) завдання, в консолі
+відсутні помилки і попередження. Для кожного компонента є окрема папка з файлом
+React-компонента та файлом стилів. Для всіх компонентів описані propTypes. Все,
+що компонент очікує у вигляді пропсів, передається йому під час виклику. Імена
+компонентів зрозумілі та описові. JS-код чистий та зрозумілий, використовується
+Prettier. Стилізація виконана CSS-модулями або Styled Components, тому класи в
+результуючому DOM відрізнятимуться від прикладів. Достатньо базової стилізації
+застосунку, насамперед він повинен працювати, а вже потім бути гарним. Приділяй
+20% часу на CSS і 80% на JS.
 
-На следующем шаге откроется страница создания нового репозитория. Заполни поле
-его имени, убедись что репозиторий публичный, после чего нажми кнопку
-`«Create repository from template»`.
+1 - Профіль соціальної мережі Необхідно створити компонент <Profile>, за
+допомогою якого ми могли б відображати інформацію про користувача соціальної
+мережі. Дані про користувача лежать у файлі user.json.
 
-![Creating repo from a template step 2](./assets/template-step-2.png)
+component preview Опис компонента <Profile> Компонент повинен приймати кілька
+пропсів з інформацією про користувача:
 
-Теперь у тебя есть личный репозиторий проекта, со структурой файлов и папок
-репозитория-шаблона. Далее работай с ним как с любым другим личным репозиторием,
-клонируй его себе на компьютер, пиши код, делай коммиты и отправляй их на
-GitHub.
+username — ім'я користувача tag — тег в соціальній мережі без @ location — місто
+і країна avatar — посилання на зображення stats — об'єкт з інформацією про
+активності Компонент повинен створювати DOM елемент наступної структури.
 
-## Подготовка к работе
+<div class="profile">
+  <div class="description">
+    <img
+      src="https://cdn-icons-png.flaticon.com/512/1077/1077012.png"
+      alt="User avatar"
+      class="avatar"
+    />
+    <p class="name">Petra Marica</p>
+    <p class="tag">@pmarica</p>
+    <p class="location">Salvador, Brasil</p>
+  </div>
 
-1. Asegúrate de que la versión LTS de Node.js está instalada en tu computador.
-   [Descárguela e instálela](https://nodejs.org/en/) de ser necesario.
-2. Instala las dependencias base del proyecto con el comando `npm install`.
-3. Inicia el modo de desarrollo ejecutando el comando `npm start`.
-4. En tu navegador, ve a la dirección
-   [http://localhost:3000](http://localhost:3000). Esta página se recargará
-   automáticamente después de guardar los cambios en los archivos del proyecto.
+  <ul class="stats">
+    <li>
+      <span class="label">Followers</span>
+      <span class="quantity">1000</span>
+    </li>
+    <li>
+      <span class="label">Views</span>
+      <span class="quantity">2000</span>
+    </li>
+    <li>
+      <span class="label">Likes</span>
+      <span class="quantity">3000</span>
+    </li>
+  </ul>
+</div>
 
-## Implementación
+Приклад використання import user from 'path/to/user.json;
 
-La versión de producción del proyecto se verificará, compilará y desplegará
-automáticamente en GitHub Pages, en la rama `gh-pages`, cada vez que se
-actualice la rama `main`. Por ejemplo, después de un Push directo o de una
-Pool-request aceptada. Para ello, edita el campo `homepage` del archivo
-`package.json`, sustituyendo `your_username` y `your_repo_name` por los tuyos
-propios, y envía los cambios a GitHub.
+<Profile
+  username={user.username}
+  tag={user.tag}
+  location={user.location}
+  avatar={user.avatar}
+  stats={user.stats}
+/>
 
-```json
-"homepage": "https://your_username.github.io/your_repo_name/"
-```
+2- Секція статистики Створити компонент <Statistics>, який би відображав
+статистику з переданих пропсів. Наприклад, завантаження у хмару за типом файлів,
+відвідування веб-сторінки користувачами різних країн, фінансові витрати тощо.
+Дані про статистику лежать у файлі data.json.
 
-A continuación, ve a la configuración del repositorio de GitHub (`Settings` >
-`Pages`) y selecciona distribuir la versión de producción de los archivos desde
-la carpeta `/root` de la rama `gh-pages`, si no se ha hecho automáticamente.
+component preview Опис компонента <Statistics> Компонент повинен приймати два
+пропи title і stats, в яких вказується заголовок та об'єкт статистики.
 
-![GitHub Pages settings](./assets/repo-settings.png)
+title – не обов'язковий, і якщо він не переданий, не повинна рендеритись
+розмітка заголовка <h2>. stats – масив об'єктів, що містять інформацію про
+елемент статистики. Може мати довільну кількість елементів. Колір фону елемента
+статистики в оформленні можна пропустити або створити функцію для генерації
+випадкового кольору. Компонент повинен створювати DOM елемент наступної
+структури.
 
-### Estado de la implantación
+<section class="statistics">
+  <h2 class="title">Upload stats</h2>
 
-El estado del último commit se indica con un icono junto al ID del commit.
+  <ul class="stat-list">
+    <li class="item">
+      <span class="label">.docx</span>
+      <span class="percentage">4%</span>
+    </li>
+    <li class="item">
+      <span class="label">.mp3</span>
+      <span class="percentage">14%</span>
+    </li>
+    <li class="item">
+      <span class="label">.pdf</span>
+      <span class="percentage">41%</span>
+    </li>
+    <li class="item">
+      <span class="label">.mp4</span>
+      <span class="percentage">12%</span>
+    </li>
+  </ul>
+</section>
 
-- **Color amarillo** - el proyecto está compilado e implementado.
-- **Color verde** - La implementación se completó con éxito.
-- **Color rojo** - Se ha producido un error durante la verificación, la
-  compilación o la implementación
+Приклад використання import data from '/path/to/data.json';
 
-Se puede ver información de estado más detallada haciendo clic en el icono y en
-la ventana desplegable del enlace `Detalles`.
+<Statistics title="Upload stats" stats={data} />
+<Statistics stats={data} />
 
-![Deployment status](./assets/deploy-status.png)
+3 - Список друзів Необхідно створити компонент <FriendList>, за допомогою якого
+ми могли б відображати інформацію про друзів користувача. Інформація про друзів
+зберігається у файлі friends.json.
 
-### Página activa
+component preview Опис компонента <FriendList> Компонент повинен приймати один
+проп friends – масив об'єктів друзів.
 
-Después de un tiempo, normalmente un par de minutos, la página real se puede ver
-en la dirección especificada en la propiedad `homepage`. Por ejemplo, aquí está
-el enlace a la versión activa de este repositorio
-[https://goitacademy.github.io/react-homework-template](https://goitacademy.github.io/react-homework-template).
+Компонент повинен створювати DOM наступної структури.
 
-Si se abre una página en blanco, asegúrate de que no haya errores en la pestaña
-`Console` relacionados con rutas incorrectas de archivos CSS y JS del proyecto
-(**404**). Probablemente tienes un valor incorrecto para la propiedad `homepage`
-en el archivo `package.json`.
+<ul class="friend-list">
+  <!-- Довільна кіл-сть FriendListItem -->
+</ul>
 
-### Enrutamiento
+Опис компонента <FriendListItem> Компонент повинен приймати кілька пропів:
 
-Si la aplicación utiliza la librería `react-router-dom` para el enrutamiento, el
-componente `<BrowserRouter>` debe ser configurado adicionalmente pasando en la
-prop `basename`, el nombre exacto de tu repositorio. Las barras inclinadas al
-principio y al final de la cadena son obligatorias.
+avatar - посилання на аватар name - ім'я друга isOnline - буль, що сигналізує
+про стан друга: в мережі або ні. Залежно від пропа isOnline, повинен змінюватися
+колір фону span.status. Це можна зробити за допомогою різних CSS-класів або
+Styled Components.
 
-```jsx
-<BrowserRouter basename="/your_repo_name/">
-  <App />
-</BrowserRouter>
-```
+Компонент повинен створювати DOM наступної структури.
 
-## ¿Cómo funciona?
+<li class="item">
+  <span class="status"></span>
+  <img class="avatar" src="" alt="User avatar" width="48" />
+  <p class="name"></p>
+</li>
 
-![How it works](./assets/how-it-works.png)
+Приклад використання import friends from 'path/to/friends.json';
 
-1. Después de cada push a la rama `main` del repositorio GitHub, se ejecuta un
-   script especial (GitHub Action) del archivo `.github/workflows/deploy.yml`.
-2. Todos los archivos del repositorio se copian en el servidor, donde el
-   proyecto se inicializa, se verifica y se compila antes de ser implementado.
-3. Si todos los pasos tienen éxito, la versión de producción compilada de los
-   archivos del proyecto se envía a la rama `gh-pages`. De lo contrario, el
-   registro de ejecución del script indicará cuál es el problema.
+<FriendList friends={friends} />;
+
+4 - Історія транзакцій Необхідно створити компонент історії транзакцій в
+особистому кабінеті інтернет-банку.
+
+component preview Дані для списку доступні у форматі JSON у файлі
+transactions.json. Це масив об'єктів, де кожен об'єкт описує одну транзакцію з
+наступними властивостями:
+
+id — унікальний ідентифікатор транзакції type — тип транзакції amount - сума
+транзакції currency - тип валюти Опис компонента <TransactionHistory> Необхідно
+створити компонент <TransactionHistory>, який приймає один проп items – масив
+об'єктів транзакцій з transactions.json. Компонент створює розмітку таблиці.
+Кожна транзакція – це рядок таблиці. У прикладі наведена розмітка двох
+транзакцій.
+
+<table class="transaction-history">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Amount</th>
+      <th>Currency</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>Invoice</td>
+      <td>125</td>
+      <td>USD</td>
+    </tr>
+    <tr>
+      <td>Withdrawal</td>
+      <td>85</td>
+      <td>USD</td>
+    </tr>
+  </tbody>
+</table>
+
+Приклад використання import transactions from 'path/to/transactions.json';
+
+<TransactionHistory items={transactions} />;
