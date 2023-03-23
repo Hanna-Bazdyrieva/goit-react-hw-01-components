@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import StatisticsItem from 'components/StatisticsItem/StatisticsItem';
-
+import { StatisticsStyled, List, Title } from './Statistics.styled';
 function Statistics({ title, stats }) {
   return (
-    <section className="statistics">
-      {title && <h2 className="title"> {title}</h2>}
+    <StatisticsStyled>
+      {title && <Title> {title}</Title>}
 
-      <ul className="stat-list">
+      <List>
         {stats.map(({ id, label, percentage }) => {
           return (
             <StatisticsItem
@@ -17,8 +17,8 @@ function Statistics({ title, stats }) {
             />
           );
         })}
-      </ul>
-    </section>
+      </List>
+    </StatisticsStyled>
   );
 }
 

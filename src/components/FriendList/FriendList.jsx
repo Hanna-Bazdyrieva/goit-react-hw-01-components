@@ -1,19 +1,18 @@
 import PropTypes from 'prop-types';
 import FriendListItem from 'components/FriendListItem/FriendListItem';
+import { FriendListStyled } from './FriendsList.styled';
 
 function FriendList({ friends }) {
-  console.log('FriendList -> friends:', friends);
   return (
-    <ul className="friend-list">
+    <FriendListStyled>
       {friends.map(friend => {
         return <FriendListItem key={friend.id} friend={friend} />;
       })}
-    </ul>
+    </FriendListStyled>
   );
 }
 
 FriendList.propTypes = {
-  // title: PropTypes.string,
   friends: PropTypes.arrayOf(
     PropTypes.shape({
       avatar: PropTypes.string.isRequired,
